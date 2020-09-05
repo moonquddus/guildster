@@ -5,7 +5,50 @@
   ],
   "jsRules": {},
   "rules": {
-      "trailing-comma": [ false ]
+      "trailing-comma": [ true, "never" ],
+      "semicolon": [ true, "never" ],
+      "quotemark": [true, "single" ],
+      "no-irregular-whitespace": true,
+      "no-consecutive-blank-lines": true,
+      "number-literal-format": true,
+      "no-trailing-whitespace": [true, "ignore-jsdoc", "ignore-comments"],
+      "import-spacing": true,
+      "align": [true, "parameters", "statements"],
+      "eofline": true,
+      "indent": [true, "spaces", 2],
+      "array-type": [true, "array"],
+      "arrow-return-shorthand": [true, "multiline"],
+      "class-name": true,
+      "comment-format": [true, "check-space", "check-uppercase", "allow-trailing-lowercase", {"ignore-words": ["TODO", "HACK"]}],
+      "encoding": true,
+      "ordered-imports": [
+        true,
+        {
+          "import-sources-order": "lowercase-last",
+          "named-imports-order": "lowercase-first"
+        }
+      ],
+      "space-before-function-paren": [true, "always"],
+      "space-within-parens": true,
+      "variable-name": {
+        "options": [
+          "ban-keywords",
+          "check-format",
+          "allow-leading-underscore",
+          "allow-pascal-case"
+        ]
+      },
+      "no-duplicate-imports": [true, {"allow-namespace-imports": true}],
+      "cyclomatic-complexity": true,
+      "triple-equals": true,
+      "switch-default": true,
+      "use-isnan": true,
+      "no-var-keyword": true,
+      "no-empty": [true, "allow-empty-catch"],
+      "no-console": [false],
+      "no-construct": true,
+      "curly": [true, "ignore-same-line"],
+      "only-arrow-functions": true
   },
   "rulesDirectory": []
 }
