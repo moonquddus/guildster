@@ -7,16 +7,17 @@ const indexUser = (req: Request, res: Response) => {
   getUser((err, users) => {
     if (err) {
       res.json({
-          status: 'error',
-          message: err,
+        status: 'error',
+        message: err,
       })
     }
     res.json({
-        status: 'success',
-        message: 'Users retrieved successfully',
-        data: users
+      status: 'success',
+      message: 'Users retrieved successfully',
+      data: users
     })
   })
+  
 }
 
 const newUser = (req: Request, res: Response) => {
@@ -28,10 +29,11 @@ const newUser = (req: Request, res: Response) => {
 
   // Save the contact and check for errors
   user.save(err =>
-    ({
+    res.json({
       message: 'New user created!',
       data: user
-    }))
+    })
+  )
 }
 
 const viewUser = (req: Request, res: Response) => {
