@@ -1,10 +1,9 @@
-// ContactController.js// Import contact model
-
-import { NextFunction, Request, Response } from 'express'
-import { getUser, IUser, User } from '../models/userModel'
+import { Request, Response } from 'express'
+import { IUser, User } from '../models/userModel'
+import { IRequest } from '../middleware/auth'
 
 const indexUser = (req: Request, res: Response) => {
-  getUser((err, users) => {
+  User.getUser((err, users) => {
     if (err) {
       res.json({
         status: 'error',
@@ -17,21 +16,62 @@ const indexUser = (req: Request, res: Response) => {
       data: users
     })
   })
-  
 }
 
-const newUser = (req: Request, res: Response) => {
+const loginUser = async (req: Request, res: Response) => {
+    // Login a registered user
+    try {
+      const { email, password } = req.body
+      const user = await User.findByCredentials(email, password)
+      if (!user) {
+          return res.status(401).send({error: 'Login failed! Check authentication credentials'})
+     }
+      const token = await user.generateAuthToken()
+      res.send({ user, token })
+  } catch (error) {
+      res.status(400).send(error)
+  }
+}
+
+const logoutUser = async (req: IRequest, res: Response) => {
+    // Log user out of the application
+    try {
+      req.user.tokens = req.user.tokens.filter((token: any) => {
+          return token.token != req.token
+      })
+      await req.user.save()
+      res.send()
+  } catch (error) {
+      res.status(500).send(error)
+  }
+}
+
+const logoutAllUser = async (req: IRequest, res: Response) => {
+  // Log user out of all devices
+  try {
+    req.user.tokens.splice(0, req.user.tokens.length)
+    await req.user.save()
+    res.send()
+  } catch (error) {
+    res.status(500).send(error)
+  }
+}
+
+const newUser = async (req: Request, res: Response) => {
   const user = new User()
   user.name = req.body.name ? req.body.name : user.name
-  user.gender = req.body.gender
+  user.password = req.body.password
   user.email = req.body.email
-  user.phone = req.body.phone
+  const token = await user.generateAuthToken()
 
   // Save the contact and check for errors
   user.save(err =>
-    res.json({
+    res.status(201).json({
       message: 'New user created!',
-      data: user
+      data: {
+        user,
+        token
+      }
     })
   )
 }
@@ -54,9 +94,7 @@ const updateUser = (req: Request, res: Response) => {
       res.send(err)
     }
     user.name = req.body.name ? req.body.name : user.name
-    user.gender = req.body.gender
     user.email = req.body.email
-    user.phone = req.body.phone
 
     // Save the user and check for errors
     user.save((saveErr) => {
@@ -85,4 +123,4 @@ const deleteUser = (req: Request, res: Response) => {
   })
 }
 
-export default { indexUser, newUser, viewUser, updateUser, deleteUser}
+export default { indexUser, loginUser, logoutUser, logoutAllUser, newUser, viewUser, updateUser, deleteUser}

@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import router from './api-routes'
 
 const app = express()
-const port = 8080 // Default port to listen
+const port = process.env.PORT
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -19,10 +19,10 @@ app.use((req: Request, res: Response, next: () => void) => {
 })
 
 try {
-    mongoose.connect('mongodb://localhost/guildsterdb', { useNewUrlParser: true, useUnifiedTopology: true});
+    mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true})
 }
 catch(err) {
-    console.log("ERROR CONNECTING", err)
+    console.log('ERROR CONNECTING', err)
 }
 
 // Added check for DB connection
