@@ -10,6 +10,7 @@ const getUserOnStart = async () => {
     console.log("HELL YEAH!")
   }).catch((error) => {
     console.log("User is not logged in. Redirecting to login screen.")
+    
   })
 }
 
