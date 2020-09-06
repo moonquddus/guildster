@@ -30,7 +30,7 @@ const loginUser = async (req: Request, res: Response) => {
           })
      }
       const token = await user.generateAuthToken()
-      res.cookie('token', token, {httpOnly: true})
+      res.cookie('usertoken', token, {httpOnly: true, maxAge: 30 * 24 * 3600 * 1000})
       res.send({ 
         _id: user._id,
         email: user.email,
@@ -48,6 +48,7 @@ const logoutUser = async (req: IRequest, res: Response) => {
       req.user.tokens = req.user.tokens.filter((token: any) =>
           token.token !== req.token)
       await req.user.save()
+      res.clearCookie('usertoken')
       res.send()
   } catch (error) {
       res.status(500).send(error)
@@ -59,6 +60,7 @@ const logoutAllUser = async (req: IRequest, res: Response) => {
   try {
     req.user.tokens.splice(0, req.user.tokens.length)
     await req.user.save()
+    res.clearCookie('usertoken')
     res.send()
   } catch (error) {
     res.status(500).send(error)

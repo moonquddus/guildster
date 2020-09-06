@@ -1,33 +1,57 @@
 import axios from 'axios'
 
-const getCsrfToken = async () => {
+export interface MyAPIResponse {
+  success: boolean
+  data: Object
+}
+
+const loadCsrfToken = async () => {
   const { data } = await axios.get('/api/csrf-token');
   axios.defaults.headers.post['X-CSRF-Token'] = data.csrfToken;
 }
 
 const getUserOnStart = async () => {
-  axios.get('/api/users/me').then((response) => {
-    console.log("HELL YEAH!")
+  let data: MyAPIResponse = {
+    success: false,
+    data: {}
+  }
+
+  await axios.get('/api/users/me').then((response) => {
+    data = {success: true, data: response.data}
   }).catch((error) => {
-    console.log("User is not logged in. Redirecting to login screen.")
-    
+    console.warn("User is not logged in. Redirecting to login screen.")
+    data = {success: false, data: error.response.data}
   })
+  return data
 }
 
-const getMyUser = async () => {
-  try{
-    const { data } = await axios.get('/api/users/me')
-    return {
-      success: true,
-      data
-    }
+const loginToAccount = async (email: string, password: string) => {
+  let data: MyAPIResponse = {
+    success: false,
+    data: {}
   }
-  catch (error) {
-    return {
-      success: false,
-      error
-    }
-  }
+
+  await axios.post('/api/users/login', { email, password }).then((response) => {
+    data = {success: true, data: response.data}
+  }).catch((error) => {
+    console.warn("Login failed!", error.response.data)
+    data = {success: false, data: error.response.data}
+  })
+  return data
 }
 
-export default { getCsrfToken, getMyUser, getUserOnStart }
+const logOutOfAccount = async () => {
+  let data: MyAPIResponse = {
+    success: false,
+    data: {}
+  }
+
+  await axios.post('/api/users/me/logout').then((response) => {
+    data = {success: true, data: response.data}
+  }).catch((error) => {
+    data = {success: false, data: error.response.data}
+  })
+  return data
+}
+
+export default { loadCsrfToken, getUserOnStart, loginToAccount, logOutOfAccount }

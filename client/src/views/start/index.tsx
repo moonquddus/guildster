@@ -1,8 +1,20 @@
 import React from 'react'
+import { Redirect } from "react-router-dom"
+import { IState } from '../../redux/reducers'
+import { connect } from 'react-redux'
 
-const Start = () => (
+type StartProps = {
+  preflightComplete: boolean
+}
+const Start = (props: StartProps) => (
   <React.Fragment>
+    { props.preflightComplete ? <Redirect to="/home" /> : <></> }
     <h1>Loading...</h1>
   </React.Fragment>
 )
-export default Start
+const mapStateToProps = (state: IState) => {
+  return { 
+      preflightComplete: state.preflightComplete
+  }
+}
+export default connect(mapStateToProps)(Start)
