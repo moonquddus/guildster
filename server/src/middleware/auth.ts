@@ -12,10 +12,14 @@ export interface IToken {
   token: string
 }
 
-type tokenType = string | IToken
-
+/**
+ * If there is a token cookie, then we add a full User object + access token to the request
+ * @param req 
+ * @param res 
+ * @param next 
+ */
 const auth = async (req: IRequest, res: Response, next: NextFunction) => {
-    const token = req.header('Authorization').replace('Bearer ', '')
+    const token = req.cookies.token
     const data = jwt.verify(token, process.env.JWT_KEY)
     try {
         const user: IUser = await User.findOne({ _id: (data as IToken)._id, 'tokens.token': token })

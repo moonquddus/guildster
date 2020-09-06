@@ -13,13 +13,20 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/users/me', auth, async (req: IRequest, res) => {
-    // View logged in user profile
-    res.send(req.user)
+router.get('/csrf-token', (req, res) => {
+    res.json({ csrfToken: req.csrfToken() });
 })
 
-router.route('/users/all')
-    .get(userController.indexUser)
+router.get('/users/me', auth, async (req: IRequest, res) => {
+    // View logged in user profile
+    const { user } = req
+    res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        guild: user.guild
+    })
+})
 
 router.route('/users/login')
     .post(userController.loginUser)
@@ -29,9 +36,6 @@ router.route('/users/register')
 
 router.route('/users/:user_id')
     .get(userController.viewUser)
-    .patch(userController.updateUser)
-    .put(userController.updateUser)
-    .delete(userController.deleteUser)
 
 router.route('/users/me/logout')
     .all(auth)

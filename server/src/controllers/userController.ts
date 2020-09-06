@@ -24,10 +24,19 @@ const loginUser = async (req: Request, res: Response) => {
       const { email, password } = req.body
       const user = await User.findByCredentials(email, password)
       if (!user) {
-          return res.status(401).send({error: 'Login failed! Check authentication credentials'})
+          return res.status(401).send({
+            error: 'LOGIN_FAILED',
+            message: 'Login failed! Check authentication credentials'
+          })
      }
       const token = await user.generateAuthToken()
-      res.send({ user, token })
+      res.cookie('token', token, {httpOnly: true})
+      res.send({ 
+        _id: user._id,
+        email: user.email,
+        guild: user.guild,
+        csrfToken: req.csrfToken()
+      })
   } catch (error) {
       res.status(400).send(error)
   }
@@ -93,7 +102,7 @@ const updateUser = (req: Request, res: Response) => {
       res.send(err)
     }
     user.name = req.body.name ? req.body.name : user.name
-    user.email = req.body.email
+    user.email = req.body.email ? req.body.email: user.email
 
     // Save the user and check for errors
     user.save((saveErr) => {
@@ -101,8 +110,7 @@ const updateUser = (req: Request, res: Response) => {
         res.json(saveErr)
       }
       res.json({
-          message: 'User Info updated',
-          data: user
+          message: 'User Info updated'
       })
     })
   })

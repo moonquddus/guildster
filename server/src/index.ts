@@ -1,22 +1,32 @@
 import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
+import cors from 'cors'
 import express, { Request, Response } from 'express'
 import mongoose from 'mongoose'
 import router from './api-routes'
+import csrf from 'csurf'
 
 const app = express()
 const port = process.env.PORT
+
+app.use(cors())
 
 app.use(bodyParser.urlencoded({
     extended: true
 }))
 
 app.use(bodyParser.json())
+app.use(cookieParser())
 
 // A middleware function with no mount path. This code is executed for every request to the router
 app.use((req: Request, res: Response, next: () => void) => {
     console.log('Time:', Date.now())
     next()
 })
+
+app.use(csrf({
+    cookie: true
+}))
 
 try {
     mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true})
