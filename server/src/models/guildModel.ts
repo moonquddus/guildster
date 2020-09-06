@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
-import { IUser } from './userModel'
 import { ICharacter } from './characterModel'
+import { IUser } from './userModel'
 
 export interface IGuild extends mongoose.Document {
   name: string

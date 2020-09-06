@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/users/me', auth, async(req: IRequest, res) => {
+router.get('/users/me', auth, async (req: IRequest, res) => {
     // View logged in user profile
     res.send(req.user)
 })

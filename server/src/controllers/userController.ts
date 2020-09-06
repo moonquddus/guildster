@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import { IUser, User } from '../models/userModel'
 import { IRequest, IToken } from '../middleware/auth'
+import { IUser, User } from '../models/userModel'
 
 const indexUser = (req: Request, res: Response) => {
   User.getUser((err, users) => {
@@ -36,9 +36,8 @@ const loginUser = async (req: Request, res: Response) => {
 const logoutUser = async (req: IRequest, res: Response) => {
     // Log user out of the application
     try {
-      req.user.tokens = req.user.tokens.filter((token: any) => {
-          return token.token != req.token
-      })
+      req.user.tokens = req.user.tokens.filter((token: any) =>
+          token.token !== req.token)
       await req.user.save()
       res.send()
   } catch (error) {
