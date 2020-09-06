@@ -26,7 +26,10 @@ const auth = async(req: IRequest, res: Response, next: NextFunction) => {
         req.token = token
         next()
     } catch (error) {
-        res.status(401).send({ error: 'Not authorized to access this resource' })
+        res.status(401).send({ 
+          error: 'NOT_AUTHORIZED',
+          message: 'You are not authorized to access this.'
+        })
     }
 
 }

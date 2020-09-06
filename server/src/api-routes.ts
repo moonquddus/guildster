@@ -9,7 +9,7 @@ const router = Router()
 router.get('/', (req, res) => {
     res.json({
         status: 'API Its Working',
-        message: 'Welcome to my personal API and shizzz'
+        message: 'Welcome to my personal API and stuff'
     })
 })
 
@@ -33,10 +33,12 @@ router.route('/users/:user_id')
     .put(userController.updateUser)
     .delete(userController.deleteUser)
 
-router.route('users/me/logout')
-    .post(userController.logoutUser)
+router.route('/users/me/logout')
+    .all(auth)
+    .post(userController.logoutUser, auth)
 
-router.route('users/me/logoutall')
+router.route('/users/me/logoutall')
+    .all(auth)
     .post(userController.logoutAllUser)
 
 // Export API routes

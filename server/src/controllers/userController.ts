@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { IUser, User } from '../models/userModel'
-import { IRequest } from '../middleware/auth'
+import { IRequest, IToken } from '../middleware/auth'
 
 const indexUser = (req: Request, res: Response) => {
   User.getUser((err, users) => {
