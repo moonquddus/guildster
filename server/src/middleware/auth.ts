@@ -19,9 +19,9 @@ export interface IToken {
  * @param next 
  */
 const auth = async (req: IRequest, res: Response, next: NextFunction) => {
-    const token = req.cookies.token
-    const data = jwt.verify(token, process.env.JWT_KEY)
     try {
+        const token = req.cookies.token
+        const data = jwt.verify(token, process.env.JWT_KEY)
         const user: IUser = await User.findOne({ _id: (data as IToken)._id, 'tokens.token': token })
         if (!user) {
             throw new Error()
