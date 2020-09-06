@@ -1,2 +1,2 @@
 # guildster
-RPG web game, based on MEAN-stack
+RPG web game, based on MERN-stack
