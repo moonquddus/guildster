@@ -2,11 +2,13 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
 import validator from 'validator'
+import { IGuild } from './guildModel'
 
 export interface IUser extends mongoose.Document {
   name: string
   email: string
   password: string
+  guild: IGuild
   tokens: string[]
   create_date: Date
   generateAuthToken: () => string
@@ -33,6 +35,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minLength: 7
+  },
+  guild: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Guild'
   },
   tokens: [{
     token: {
