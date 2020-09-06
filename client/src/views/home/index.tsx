@@ -11,6 +11,7 @@ type HomeProps = {
 }
 const Home = (props: HomeProps) => {
   const { dispatch, user } = props
+  console.log("USER", user)
 
   const handleLogout = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -31,10 +32,24 @@ const Home = (props: HomeProps) => {
     return false
   }
 
+  const generateGuildDetails = () => {
+    if (!user || !user.guild){
+      return (
+        <React.Fragment>
+          <h2>No Guild Yet!</h2>
+        </React.Fragment>
+      )
+    }
+    return (
+      <h2>{ user.guild.name }</h2>
+    )
+  }
+
   return (
     <React.Fragment>
       <h1>Home</h1>
       { generateUserDetails() }
+      { generateGuildDetails() }
       <button onClick={handleLogout}>Logout</button>
     </React.Fragment>
   )

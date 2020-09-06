@@ -25,6 +25,21 @@ const getUserOnStart = async () => {
   return data
 }
 
+const registerAccount = async (email: string, password: string, displayName: string, guild: string) => {
+  let data: MyAPIResponse = {
+    success: false,
+    data: {}
+  }
+
+  await axios.post('/api/users/register', { email, password, name: displayName, guild }).then((response) => {
+    data = {success: true, data: response.data}
+  }).catch((error) => {
+    console.warn("Register failed!", error.response.data)
+    data = {success: false, data: error.response.data}
+  })
+  return data
+}
+
 const loginToAccount = async (email: string, password: string) => {
   let data: MyAPIResponse = {
     success: false,
@@ -54,4 +69,4 @@ const logOutOfAccount = async () => {
   return data
 }
 
-export default { loadCsrfToken, getUserOnStart, loginToAccount, logOutOfAccount }
+export default { loadCsrfToken, getUserOnStart, registerAccount, loginToAccount, logOutOfAccount }

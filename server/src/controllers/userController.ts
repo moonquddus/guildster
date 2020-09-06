@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { IRequest, IToken } from '../middleware/auth'
 import { IUser, User } from '../models/userModel'
+import { Guild } from '../models/guildModel'
 
 const indexUser = (req: Request, res: Response) => {
   User.getUser((err, users) => {
@@ -31,11 +32,11 @@ const loginUser = async (req: Request, res: Response) => {
      }
       const token = await user.generateAuthToken()
       res.cookie('usertoken', token, {httpOnly: true, maxAge: 30 * 24 * 3600 * 1000})
-      res.send({ 
+      res.send({
+        name: user.name,
         _id: user._id,
         email: user.email,
-        guild: user.guild,
-        csrfToken: req.csrfToken()
+        guild: user.guild
       })
   } catch (error) {
       res.status(400).send(error)
@@ -74,15 +75,22 @@ const newUser = async (req: Request, res: Response) => {
   user.email = req.body.email
   const token = await user.generateAuthToken()
 
+  const guild = new Guild()
+  guild.name = req.body.guild
+  guild.save()
+
+  user.guild = guild._id
+
   // Save the contact and check for errors
-  user.save(err =>
+  user.save(err =>{
+    res.cookie('usertoken', token, {httpOnly: true, maxAge: 30 * 24 * 3600 * 1000})
     res.status(201).json({
-      message: 'New user created!',
-      data: {
-        user,
-        token
-      }
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      guild: guild
     })
+  }
   )
 }
 
@@ -91,6 +99,7 @@ const viewUser = (req: Request, res: Response) => {
     if (err) {
       res.send(err)
     }
+    user.populate('guild')
     res.json({
         message: 'User details loading..',
         data: user

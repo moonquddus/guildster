@@ -1,5 +1,7 @@
 {
-  "name": "client",
+  "name": "@moon.quddus/guildster-client",
+  "author": "Moon Quddus",
+  "description": "Frontend web client for my RPG game",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:8080",

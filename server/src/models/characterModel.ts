@@ -3,9 +3,10 @@ import { IGuild } from './guildModel'
 
 export interface ICharacter extends mongoose.Document {
   name: string
-  guild: IGuild
+  occupation: string
   health: number
   strength: number
+  magic: number
   speed: number
   skills: {
     name: string
@@ -28,18 +29,21 @@ const characterSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  guild: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Guild'
+  occupation: {
+    type: String,
+    required: true
   },
   health: {
-    type: Number,
+    type: Number
   },
   strength: {
-    type: Number,
+    type: Number
+  },
+  magic: {
+    type: Number
   },
   speed: {
-    type: Number,
+    type: Number
   },
   skills: [skillSchema]
 })

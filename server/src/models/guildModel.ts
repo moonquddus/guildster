@@ -4,7 +4,6 @@ import { IUser } from './userModel'
 
 export interface IGuild extends mongoose.Document {
   name: string
-  creator: IUser
   characters: ICharacter[]
 }
 
@@ -14,13 +13,9 @@ const guildSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  creator: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
   characters: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Character'
+    ref: 'character'
   }]
 })
 

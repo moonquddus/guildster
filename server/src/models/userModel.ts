@@ -12,6 +12,7 @@ export interface IUser extends mongoose.Document {
   tokens: string[]
   create_date: Date
   generateAuthToken: () => string
+  getUserDetails: () => Object
 }
 
 export interface IUserModel extends mongoose.Model<IUser> {
@@ -38,7 +39,7 @@ const userSchema = new mongoose.Schema({
   },
   guild: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Guild'
+    ref: 'guild'
   },
   tokens: [{
     token: {
@@ -70,6 +71,15 @@ userSchema.methods.generateAuthToken = async function () {
   user.tokens = user.tokens.concat({token})
   await user.save()
   return token
+}
+
+userSchema.methods.getUserDetails = async function () {
+  const user = this
+  return {
+    _id: user._id,
+    name: user.name,
+    email: user.email
+  }
 }
 
 userSchema.statics.findByCredentials = async (email: string, password: string) => {

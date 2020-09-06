@@ -22,7 +22,7 @@ const auth = async (req: IRequest, res: Response, next: NextFunction) => {
     try {
         const token = req.cookies.usertoken
         const data = jwt.verify(token, process.env.JWT_KEY)
-        const user: IUser = await User.findOne({ _id: (data as IToken)._id, 'tokens.token': token })
+        const user: IUser = await User.findOne({ _id: (data as IToken)._id, 'tokens.token': token }).populate('guild').populate('character')
         if (!user) {
             throw new Error()
         }

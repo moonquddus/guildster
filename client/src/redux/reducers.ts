@@ -1,8 +1,23 @@
 import { Action } from './actions'
 
+interface ISkill {
+  name: string
+  damage: number
+}
+
+interface ICharacter {
+  name: string
+  occupation: string
+  health: number
+  strength: number
+  magic: number
+  speed: number
+  skills?: ISkill[]
+}
+
 interface IGuild {
   name: string
-  creator: IUser
+  characters?: ICharacter[]
 }
 
 export interface IUser {
@@ -12,14 +27,14 @@ export interface IUser {
 }
 
 export interface IState {
-  preflightComplete: false,
+  preflightComplete: false
   isLoggedIn: boolean
   user?: IUser
 }
 
 const initialState = {
   preflightComplete: false,
-  isLoggedIn: true
+  isLoggedIn: false
 }
 
 function rootReducer(state = initialState, action: Action) {
