@@ -5,6 +5,7 @@ import express, { Request, Response } from 'express'
 import mongoose from 'mongoose'
 import router from './api-routes'
 import csrf from 'csurf'
+import { request } from 'http'
 
 const app = express()
 const port = process.env.PORT
@@ -20,7 +21,8 @@ app.use(cookieParser())
 
 // A middleware function with no mount path. This code is executed for every request to the router
 app.use((req: Request, res: Response, next: () => void) => {
-    console.log('Time:', Date.now())
+    const timestamp = new Date(Date.now())
+    console.log('API CALL - "' + req.path + '" at:', timestamp.toLocaleString())
     next()
 })
 
