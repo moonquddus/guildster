@@ -7,14 +7,20 @@ html {
 }
 
 body {
-  margin: 0;
-  font-family: 'Balsamiq Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #973926;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  color: #973926;
+}
+
+* {
+  font-family: 'Balsamiq Sans', sans-serif;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
