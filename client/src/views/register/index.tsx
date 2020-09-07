@@ -4,16 +4,9 @@ import { IState } from '../../redux/reducers'
 import { connect } from 'react-redux'
 import { Action, initUser } from '../../redux/actions'
 import { Dispatch } from 'redux'
-import Input from '../../components/input'
-import FormContainer from '../../components/formContainer'
-import ActionBar from '../../components/actionBar'
-import AppHeader from '../../components/appHeader'
-import Card from '../../components/card'
-import Button from '../../components/button'
-import FloatingLabel from '../../components/floatingLabel'
-import Label from '../../components/label'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import components from '../../components'
 
 type RegisterProps = {
   dispatch: Dispatch<Action>
@@ -27,6 +20,7 @@ const SignIn = styled.p`
 
 const Register = (props: RegisterProps) => {
   const { dispatch } = props
+  const { Card, Input, FormContainer, ActionBar, AppHeader, Button, FloatingLabel, Label} = components
 
   const [email, setEmail] = useState("")
   const [displayName, setDisplayName] = useState("")

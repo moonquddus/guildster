@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default styled.main`
   width: 90%;
-  max-width: ${props => props.theme.width || "800px"};
+  max-width: ${props => props.theme.width || "1000px"};
   min-height: 50vh;
   margin: 10% auto 0;
   background: #efc78c;

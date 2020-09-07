@@ -38,13 +38,17 @@ const { dispatch } = props
   const privateView = (component: JSX.Element) => notAuthorized() ? (<Redirect to="/login" />) : component
 
   return (
-    <Switch>
-      <Route exact path="/">{privateView(<Start />)}</Route>
-      <Route path="/register">{props.isLoggedIn ? <Redirect to='/home' /> : <Register />}</Route>
-      <Route path="/login">{props.isLoggedIn ? <Redirect to='/home' /> : <Login />}</Route>
-      <Route path="/home">{privateView(<Home />)}</Route>
-      <Route path="/new-character">{privateView(<NewCharacter />)}</Route>
-    </Switch>
+    <React.Fragment>
+      {props.preflightComplete && props.isLoggedIn && (<h1>HELLO</h1>)}
+      <Switch>
+        <Route exact path="/">{privateView(<Start />)}</Route>
+        <Route path="/register">{props.isLoggedIn ? <Redirect to='/home' /> : <Register />}</Route>
+        <Route path="/login">{props.isLoggedIn ? <Redirect to='/home' /> : <Login />}</Route>
+        <Route path="/home">{privateView(<Home />)}</Route>
+        <Route path="/new-character">{privateView(<NewCharacter />)}</Route>
+      </Switch>
+
+    </React.Fragment>
   );
 }
 

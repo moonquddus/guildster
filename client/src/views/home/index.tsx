@@ -1,9 +1,21 @@
-import React from 'react'
-import { IState, IUser } from '../../redux/reducers'
+import React, { useState, useEffect, JSXElementConstructor } from 'react'
+import { IState, IUser, IGuild, ICharacter } from '../../redux/reducers'
 import { connect } from 'react-redux'
 import apiHandler from '../../lib/apiHandler'
 import { Dispatch } from 'redux'
 import { logout, Action } from '../../redux/actions'
+import components from '../../components'
+import CharacterCard from '../viewCharacter/card'
+import styled from 'styled-components'
+
+const Roster = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  & > * {
+    max-width: 33%;
+  }
+`
 
 type HomeProps = {
   dispatch: Dispatch<Action>,
@@ -11,7 +23,16 @@ type HomeProps = {
 }
 const Home = (props: HomeProps) => {
   const { dispatch, user } = props
+  const { Card, AppHeader, SubHeader } = components
+
+  const [guild, setGuild] = useState<IGuild>({})
   console.log("USER", user)
+
+  useEffect(() => {
+    if (user && user.guild){
+      setGuild(user.guild)
+    }
+  }, [user])
 
   const handleLogout = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -20,38 +41,27 @@ const Home = (props: HomeProps) => {
     })
   }
 
-  const generateUserDetails = () => {
-    if (user) {
-      return (
-        <ul>
-          <li>Username: {user.name}</li>
-          <li>Email Address: {user.email}</li>
-        </ul>
-      )
+  const generateCharacters = () => {
+    let render: Array<JSX.Element> = []
+    if (guild && guild.characters){
+      guild.characters.forEach((character: ICharacter) => {
+        render.push(
+          <CharacterCard key={character._id} character={character} />
+        )
+      })
     }
-    return false
-  }
-
-  const generateGuildDetails = () => {
-    if (!user || !user.guild){
-      return (
-        <React.Fragment>
-          <h2>No Guild Yet!</h2>
-        </React.Fragment>
-      )
-    }
-    return (
-      <h2>{ user.guild.name }</h2>
-    )
+    return render
   }
 
   return (
-    <React.Fragment>
-      <h1>Home</h1>
-      { generateUserDetails() }
-      { generateGuildDetails() }
+    <Card>
+      <AppHeader>Welcome to {guild.name}</AppHeader>
+      <SubHeader>Roster</SubHeader>
+      <Roster>
+        { generateCharacters() }
+      </Roster>
       <button onClick={handleLogout}>Logout</button>
-    </React.Fragment>
+    </Card>
   )
 }
 const mapStateToProps = (state: IState) => {
