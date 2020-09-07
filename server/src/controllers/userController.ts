@@ -77,21 +77,29 @@ const newUser = async (req: Request, res: Response) => {
 
   const guild = new Guild()
   guild.name = req.body.guild
+  guild.gold = 1000
   guild.save()
 
   user.guild = guild._id
 
   // Save the contact and check for errors
-  user.save(err =>{
-    res.cookie('usertoken', token, {httpOnly: true, maxAge: 30 * 24 * 3600 * 1000})
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      guild: guild
+  try{
+    user.save(err =>{
+      res.cookie('usertoken', token, {httpOnly: true, maxAge: 30 * 24 * 3600 * 1000})
+      res.status(201).json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        guild: guild
+      })
     })
   }
-  )
+  catch(error){
+    res.status(400).json({
+      error: "INVALID_DETAILS",
+      message: "Invalid user details. Please try again."
+    })
+  }
 }
 
 const viewUser = (req: Request, res: Response) => {

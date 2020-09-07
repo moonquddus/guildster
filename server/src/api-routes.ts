@@ -2,6 +2,7 @@
 // Initialize express router
 import { Router } from 'express'
 import userController from './controllers/userController'
+import characterController from './controllers/characterController'
 import auth, { IRequest } from './middleware/auth'
 
 const router = Router()
@@ -44,6 +45,10 @@ router.route('/users/me/logout')
 router.route('/users/me/logoutall')
     .all(auth)
     .post(userController.logoutAllUser)
+
+router.route('/characters/new')
+    .all(auth)
+    .post(characterController.addCharacter)
 
 // Export API routes
 export default router
