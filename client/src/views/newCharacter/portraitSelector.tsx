@@ -46,9 +46,9 @@ const PortraitSelector = (props: PSProps) => {
         <PortraitImage src={ portraits[selectedOption] } />
       </PortraitContainer>
       <ControlBar>
-        <Button theme={{height: '5px'}} onClick={prevOption}>&laquo;</Button>
+        <Button type='button' theme={{height: '5px'}} onClick={prevOption}>&laquo;</Button>
         <SubHeader>Portrait</SubHeader>
-        <Button theme={{height: '5px'}} onClick={nextOption}>&raquo;</Button>
+        <Button type='button' theme={{height: '5px'}} onClick={nextOption}>&raquo;</Button>
       </ControlBar>
     </React.Fragment>
   )

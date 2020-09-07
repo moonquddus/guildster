@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import { IUser, User } from '../models/userModel'
+import { Character } from '../models/characterModel'
+import { Guild } from '../models/guildModel'
 
 export interface IRequest extends Request {
   user: IUser
@@ -20,15 +22,23 @@ export interface IToken {
  */
 const auth = async (req: IRequest, res: Response, next: NextFunction) => {
     try {
-        const token = req.cookies.usertoken
-        const data = jwt.verify(token, process.env.JWT_KEY)
-        const user: IUser = await User.findOne({ _id: (data as IToken)._id, 'tokens.token': token }).populate('guild').populate('character')
-        if (!user) {
-            throw new Error()
+      const token = req.cookies.usertoken
+      const data = jwt.verify(token, process.env.JWT_KEY)
+      const user: IUser = await User.findOne({ _id: (data as IToken)._id, 'tokens.token': token }).populate({
+        path: 'guild',
+        model: Guild,
+        populate: { 
+          path: 'characters',
+          model: Character
         }
-        req.user = user
-        req.token = token
-        next()
+      })
+
+      if (!user) {
+        throw new Error()
+      }
+      req.user = user
+      req.token = token
+      next()
     } catch (error) {
         res.status(401).send({
           error: 'NOT_AUTHORIZED',

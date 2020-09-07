@@ -14,10 +14,10 @@ const guildSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  characters: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'character'
-  }],
+  characters: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'characters'
+  },
   gold: {
     type: Number
   }

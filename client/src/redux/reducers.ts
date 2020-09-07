@@ -8,6 +8,7 @@ interface ISkill {
 interface ICharacter {
   name: string
   occupation: string
+  portrait: number
   health: number
   strength: number
   magic: number
@@ -17,19 +18,20 @@ interface ICharacter {
 
 interface IGuild {
   name: string
+  gold: number
   characters?: ICharacter[]
 }
 
 export interface IUser {
   name: string
   email: string
-  guild?: IGuild
+  guild: IGuild
 }
 
 export interface IState {
   preflightComplete: false
   isLoggedIn: boolean
-  user?: IUser
+  user: IUser
 }
 
 const initialState = {
@@ -55,6 +57,11 @@ function rootReducer(state = initialState, action: Action) {
         return {
           ...state,
           preflightComplete: true
+        }
+      case "UPDATE_USER":
+        return {
+          ...state,
+          user: action.payload.data
         }
       default:
         return state

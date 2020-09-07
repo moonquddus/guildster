@@ -29,7 +29,7 @@ const addCharacter = (req: IRequest, res: Response) => {
       res.send(err)
     }
     else{
-      res.status(201).json(guild)
+      res.status(201).json(user)
     }
   })
 }

@@ -22,3 +22,7 @@ export const logout = (payload: IPayload) => {
 export const preflightFinished = (payload: IPayload) => {
   return { type: "PREFLIGHT_FINISHED", payload}
 }
+
+export const updateUser = (payload: IPayload) => {
+  return { type: "UPDATE_USER", payload}
+}
