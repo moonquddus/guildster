@@ -69,4 +69,18 @@ const logOutOfAccount = async () => {
   return data
 }
 
-export default { loadCsrfToken, getUserOnStart, registerAccount, loginToAccount, logOutOfAccount }
+const addNewCharacter = async (name: string, occupation: string, portrait: number) => {
+  let data: MyAPIResponse = {
+    success: false,
+    data: {}
+  }
+
+  await axios.post('/api/characters/new', {name, occupation, portrait}).then((response) => {
+    data = {success: true, data: response.data}
+  }).catch((error) => {
+    data = {success: false, data: error.response.data}
+  })
+  return data
+}
+
+export default { loadCsrfToken, getUserOnStart, registerAccount, loginToAccount, logOutOfAccount, addNewCharacter }
