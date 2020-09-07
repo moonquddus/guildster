@@ -25,14 +25,23 @@ export default styled.button`
   color: #ffdfb0;
   text-transform: uppercase;
   font-size: 14px;
+  letter-spacing: -1px;
   outline: none;
   box-shadow: 3px 3px 0px 0px rgb(0, 0, 0, 0.2);
   margin: auto;
-  padding: 10px 15px;
+  padding: ${props => props.theme.height || '10px'} 15px;
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
   text-align: center;
-  min-width: 200px;
-  width: auto;
+  min-width: auto;
+  width: ${props => props.theme.width || 'auto'};
+
+  &:hover {
+    color: #f7d6a6;
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
 `;

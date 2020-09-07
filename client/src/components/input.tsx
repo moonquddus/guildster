@@ -10,14 +10,12 @@ export default styled.input`
   margin: 0 0 20px;
   padding: 10px 15px;
   width: 100%;
-  border-bottom: solid 2px transparent;
 
   &:hover {
     background: #f7d6a6;
   }
 
   &:focus {
-    border-color: #973926;
     outline: none;
   }
 `;
