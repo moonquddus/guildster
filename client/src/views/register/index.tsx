@@ -70,7 +70,6 @@ const Register = (props: RegisterProps) => {
             <Label htmlFor=''>Guild:</Label>
           </FloatingLabel>
           <ActionBar>
-            <Button>Back</Button>
             <Button type='submit'>Sign Up</Button>
           </ActionBar>
         </form>

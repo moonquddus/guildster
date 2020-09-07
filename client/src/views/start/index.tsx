@@ -2,15 +2,17 @@ import React from 'react'
 import { Redirect } from "react-router-dom"
 import { IState } from '../../redux/reducers'
 import { connect } from 'react-redux'
+import Card from '../../components/card'
+import AppHeader from '../../components/appHeader'
 
 type StartProps = {
   preflightComplete: boolean
 }
 const Start = (props: StartProps) => (
-  <React.Fragment>
+  <Card theme={{width: '400px'}}>
     { props.preflightComplete ? <Redirect to="/home" /> : <></> }
-    <h1>Loading...</h1>
-  </React.Fragment>
+    <AppHeader>Connecting to server...</AppHeader>
+  </Card>
 )
 const mapStateToProps = (state: IState) => {
   return { 
