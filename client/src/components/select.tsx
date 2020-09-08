@@ -4,7 +4,7 @@ import Label from './label'
 
 const DropDownContainer = styled.div`
   position: relative;
-  margin-top: 5px;
+  margin-top: 10px;
 
   & label {
     position: absolute;
@@ -84,7 +84,7 @@ const Select = (props: SelectProps) => {
 
   const getSelectedName = () => {
     const foundName = options.filter((option) => option.value === selectedOption)
-    return foundName[0].name
+    return foundName.length ? foundName[0].name : ''
   }
 
   return (

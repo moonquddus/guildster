@@ -10,10 +10,15 @@ export interface ICharacter {
   name: string
   occupation: string
   portrait: number
+  hp: number
   health: number
   strength: number
   magic: number
-  speed: number
+  agility: number
+  dexterity: number
+  luck: number
+  stamina: number
+  focus: number
   skills: ISkill[]
 }
 

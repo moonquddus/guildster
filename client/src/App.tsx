@@ -7,9 +7,10 @@ import Login from './views/login'
 import Register from './views/register'
 import Home from './views/home'
 import NewCharacter from './views/newCharacter'
+import ViewCharacter from './views/viewCharacter'
+import GuildMenu from './views/guildMenu'
 import { IState } from './redux/reducers'
 import { initUser, logout, preflightFinished, Action } from './redux/actions'
-import Card from './components/card'
 
 type AppProps = {
   isLoggedIn: boolean,
@@ -39,13 +40,14 @@ const { dispatch } = props
 
   return (
     <React.Fragment>
-      {props.preflightComplete && props.isLoggedIn && (<h1>HELLO</h1>)}
+      {props.preflightComplete && props.isLoggedIn && (<GuildMenu />)}
       <Switch>
         <Route exact path="/">{privateView(<Start />)}</Route>
         <Route path="/register">{props.isLoggedIn ? <Redirect to='/home' /> : <Register />}</Route>
         <Route path="/login">{props.isLoggedIn ? <Redirect to='/home' /> : <Login />}</Route>
         <Route path="/home">{privateView(<Home />)}</Route>
         <Route path="/new-character">{privateView(<NewCharacter />)}</Route>
+        <Route path="/view-character/:id">{privateView(<ViewCharacter />)}</Route>
       </Switch>
 
     </React.Fragment>

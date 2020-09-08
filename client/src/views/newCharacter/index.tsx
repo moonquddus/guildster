@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import apiHandler from '../../lib/apiHandler'
 import { IState } from '../../redux/reducers'
 import { connect } from 'react-redux'
@@ -8,11 +9,7 @@ import components from '../../components'
 import PortraitSelector from './portraitSelector'
 import { Redirect } from 'react-router-dom'
 
-type RegisterProps = {
-  dispatch: Dispatch<Action>
-}
-
-// TODO: Move this someplace elsewhere
+// TODO: Move this someplace else
 const occupations = [
   { value: 'assassin', name:'Assassin' }, // Rogue/Attack
   { value: 'mage', name:'Mage' }, // Elemental Mage/Balanced
@@ -60,17 +57,29 @@ const randomNames = [
 ]
 const pickRandom = (array: any[]) => array[Math.floor(Math.random() * array.length)];
 
+type FormValues = {
+  charName: string
+  occupation: string
+  portrait: number
+};
+
+type RegisterProps = {
+  dispatch: Dispatch<Action>
+}
 const NewCharacter = (props: RegisterProps) => {
   const { dispatch } = props
-  const { ActionBar, AppHeader, Button, Card, FormContainer, FloatingLabel, Input, Label, SimpleGrid, Left, Right, Select } = components
-
+  const { ActionBar, AppHeader, Button, Card, FormContainer, FloatingLabel, FormError, Input, Label, SimpleGrid, Left, Right, Select } = components
+  const { handleSubmit, register, errors } = useForm({
+    defaultValues: {
+      charName: pickRandom(randomNames)
+    }
+  })
   const [occupation, setOccupation] = useState(pickRandom(occupations).value)
-  const [charName, setCharName] = useState(pickRandom(randomNames))
   const [portrait, setPortrait] = useState(0)
   const [formComplete, setFormComplete] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const onSubmit: SubmitHandler<FormValues> = data => {
+    const { charName } = data
     apiHandler.addNewCharacter(charName, occupation, portrait).then((response) => {
       if (response.success){
         dispatch(updateUser({
@@ -86,12 +95,19 @@ const NewCharacter = (props: RegisterProps) => {
       { formComplete && (<Redirect to='/home' />) }
       <AppHeader>Add New Character</AppHeader>
       <FormContainer>
-        <form method='post' onSubmit={handleSubmit}>
+        <form method='post' onSubmit={handleSubmit(onSubmit)}>
           <SimpleGrid>
             <Left>
               <FloatingLabel>
-                <Input type='text' name='charName' placeholder='Character Name' value={charName} onChange={e => setCharName(e.target.value)} />
+                <Input type='text' name='charName' placeholder='Character Name' ref={register({
+                  required: "Your character needs a name!",
+                  pattern: {
+                    value: /^[a-zA-Z\s,.'-\pL]+$/,
+                    message: 'Your character needs a name'
+                  }
+                })} />
                 <Label htmlFor='charName'>Character Name:</Label>
+                <FormError>{errors.charName && errors.charName.message}</FormError>
               </FloatingLabel>
               <Select label={'Class'} options={occupations} selectedOption={occupation} setSelectedOption={setOccupation} />
             </Left>

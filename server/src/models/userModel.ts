@@ -2,7 +2,8 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
 import validator from 'validator'
-import { IGuild } from './guildModel'
+import { IGuild, Guild } from './guildModel'
+import { Character } from './characterModel'
 
 export interface IUser extends mongoose.Document {
   name: string
@@ -84,7 +85,14 @@ userSchema.methods.getUserDetails = async function () {
 
 userSchema.statics.findByCredentials = async (email: string, password: string) => {
   // Search for a user by email and password.
-  const user = await User.findOne({ email })
+  const user = await User.findOne({ email }).populate({
+    path: 'guild',
+    model: Guild,
+    populate: { 
+      path: 'characters',
+      model: Character
+    }
+  })
   if (!user) {
     return false
   }

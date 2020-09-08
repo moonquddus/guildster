@@ -5,10 +5,15 @@ export interface ICharacter extends mongoose.Document {
   name: string
   portrait: number
   occupation: string
+  hp: number
   health: number
   strength: number
   magic: number
-  speed: number
+  agility: number
+  dexterity: number
+  luck: number
+  stamina: number
+  focus: number
   skills: {
     name: string
     damage: number
@@ -37,6 +42,9 @@ const characterSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  hp: {
+    type: Number
+  },
   health: {
     type: Number
   },
@@ -46,7 +54,19 @@ const characterSchema = new mongoose.Schema({
   magic: {
     type: Number
   },
-  speed: {
+  agility: {
+    type: Number
+  },
+  dexterity: {
+    type: Number
+  },
+  luck: {
+    type: Number
+  },
+  stamina: {
+    type: Number
+  },
+  focus: {
     type: Number
   },
   skills: [skillSchema]

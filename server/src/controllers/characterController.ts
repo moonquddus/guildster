@@ -17,9 +17,14 @@ const addCharacter = (req: IRequest, res: Response) => {
   
   // TODO: Make this a bit more dynamic depending on character occupation
   character.health = rollStat(10, 20)
+  character.hp = character.health
   character.strength = rollStat(1, 20)
   character.magic = rollStat(1, 20)
-  character.speed = rollStat(1, 20)
+  character.agility = rollStat(1, 20)
+  character.dexterity = rollStat(1, 20)
+  character.luck = rollStat(1, 20)
+  character.stamina = rollStat(1, 20)
+  character.focus = rollStat(1, 20)
   character.skills = []
 
   character.save()

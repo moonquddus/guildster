@@ -24,22 +24,13 @@ type HomeProps = {
 const Home = (props: HomeProps) => {
   const { dispatch, user } = props
   const { Card, AppHeader, SubHeader } = components
-
   const [guild, setGuild] = useState<IGuild>({})
-  console.log("USER", user)
 
   useEffect(() => {
     if (user && user.guild){
       setGuild(user.guild)
     }
   }, [user])
-
-  const handleLogout = (e: React.MouseEvent) => {
-    e.preventDefault()
-    apiHandler.logOutOfAccount().then(() => {
-      dispatch(logout({}))
-    })
-  }
 
   const generateCharacters = () => {
     let render: Array<JSX.Element> = []
@@ -56,11 +47,9 @@ const Home = (props: HomeProps) => {
   return (
     <Card>
       <AppHeader>Welcome to {guild.name}</AppHeader>
-      <SubHeader>Roster</SubHeader>
       <Roster>
         { generateCharacters() }
       </Roster>
-      <button onClick={handleLogout}>Logout</button>
     </Card>
   )
 }

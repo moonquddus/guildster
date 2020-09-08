@@ -7,7 +7,7 @@ export const SimpleGrid = styled.div`
   grid-gap: 0 0;
   align-items: stretch;
   width: 100%;
-  margin: 0;
+  margin: 0 0 40px;
   padding: 0;
 `;
 
