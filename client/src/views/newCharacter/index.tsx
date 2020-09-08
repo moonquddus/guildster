@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import apiHandler from '../../lib/apiHandler'
 import { IState } from '../../redux/reducers'
@@ -11,49 +11,49 @@ import { Redirect } from 'react-router-dom'
 
 // TODO: Move this someplace else
 const occupations = [
-  { value: 'assassin', name:'Assassin' }, // Rogue/Attack
-  { value: 'mage', name:'Mage' }, // Elemental Mage/Balanced
-  { value: 'noble', name:'Noble' }, // Tank/Balanced
-  { value: 'paladin', name:'Paladin' }, // Tank/Support
-  { value: 'priest', name:'Priest' }, // Light Mage/Support
-  { value: 'soldier', name:'Soldier' }, // Fighter/Balanced
-  { value: 'thief', name:'Thief' }, // Rogue/Support
-  { value: 'vanguard', name:'Vanguard' }, // Tank/Attack
-  { value: 'warlock', name:'Warlock' }, // Dark Mage/Attack
-  { value: 'warrior', name:'Warrior' }, // Fighter/Attack
-  { value: 'wizard', name:'Wizard' } // Mage/Balanced
+  { value: 'assassin', name: 'Assassin' }, // Rogue/Attack
+  { value: 'mage', name: 'Mage' }, // Elemental Mage/Balanced
+  { value: 'noble', name: 'Noble' }, // Tank/Balanced
+  { value: 'paladin', name: 'Paladin' }, // Tank/Support
+  { value: 'priest', name: 'Priest' }, // Light Mage/Support
+  { value: 'soldier', name: 'Soldier' }, // Fighter/Balanced
+  { value: 'thief', name: 'Thief' }, // Rogue/Support
+  { value: 'vanguard', name: 'Vanguard' }, // Tank/Attack
+  { value: 'warlock', name: 'Warlock' }, // Dark Mage/Attack
+  { value: 'warrior', name: 'Warrior' }, // Fighter/Attack
+  { value: 'wizard', name: 'Wizard' } // Mage/Balanced
 ]
 const randomNames = [
-'Vaphior',
-'Uzegoris',
-'Dinyll',
-'Hamorith',
-'Mibaris',
-'Phubaris',
-'Innero',
-'Detosh',
-'Annixyll',
-'Ilokelis',
-'Ovras',
-'Orius',
-'Amonar',
-'Unomazz',
-'Uvras',
-'Umazz',
-'Rapius',
-'Rhophior',
-'Uvineth',
-'Undonior',
-'Phebaris',
-'Itowyn',
-'Amihaen',
-'Ibine',
-'Iwaelle',
-'Ilezith',
-'Ezora',
-'Imnuffea',
-'Ibess',
-'Idasinore'
+  'Vaphior',
+  'Uzegoris',
+  'Dinyll',
+  'Hamorith',
+  'Mibaris',
+  'Phubaris',
+  'Innero',
+  'Detosh',
+  'Annixyll',
+  'Ilokelis',
+  'Ovras',
+  'Orius',
+  'Amonar',
+  'Unomazz',
+  'Uvras',
+  'Umazz',
+  'Rapius',
+  'Rhophior',
+  'Uvineth',
+  'Undonior',
+  'Phebaris',
+  'Itowyn',
+  'Amihaen',
+  'Ibine',
+  'Iwaelle',
+  'Ilezith',
+  'Ezora',
+  'Imnuffea',
+  'Ibess',
+  'Idasinore'
 ]
 const pickRandom = (array: any[]) => array[Math.floor(Math.random() * array.length)];
 
@@ -92,7 +92,7 @@ const NewCharacter = (props: RegisterProps) => {
 
   return (
     <Card>
-      { formComplete && (<Redirect to='/home' />) }
+      { formComplete && <Redirect to='/home' /> }
       <AppHeader>Add New Character</AppHeader>
       <FormContainer>
         <form method='post' onSubmit={handleSubmit(onSubmit)}>
@@ -100,7 +100,7 @@ const NewCharacter = (props: RegisterProps) => {
             <Left>
               <FloatingLabel>
                 <Input type='text' name='charName' placeholder='Character Name' ref={register({
-                  required: "Your character needs a name!",
+                  required: 'Your character needs a name!',
                   pattern: {
                     value: /^[a-zA-Z\s,.'-\pL]+$/,
                     message: 'Your character needs a name'
@@ -116,7 +116,7 @@ const NewCharacter = (props: RegisterProps) => {
             </Right>
           </SimpleGrid>
           <ActionBar>
-              <Button type='submit'>Add New Character</Button>
+            <Button type='submit'>Add New Character</Button>
           </ActionBar>
         </form>
       </FormContainer>

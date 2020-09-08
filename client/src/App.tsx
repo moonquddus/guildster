@@ -1,6 +1,6 @@
 import React, { useEffect, Dispatch } from 'react';
 import { connect } from 'react-redux'
-import { Route, Switch, Redirect } from "react-router-dom"
+import { Route, Switch, Redirect } from 'react-router-dom'
 import apiHandler from './lib/apiHandler'
 import Start from './views/start'
 import Login from './views/login'
@@ -19,7 +19,7 @@ type AppProps = {
 }
 
 const App = (props: AppProps) => {
-const { dispatch } = props
+  const { dispatch } = props
   useEffect(() => {
     apiHandler.loadCsrfToken()
     apiHandler.getUserOnStart().then(response => {
@@ -36,18 +36,18 @@ const { dispatch } = props
   }, [dispatch]);
 
   const notAuthorized = () => props.preflightComplete && !props.isLoggedIn
-  const privateView = (component: JSX.Element) => notAuthorized() ? (<Redirect to="/login" />) : component
+  const privateView = (component: JSX.Element) => notAuthorized() ? <Redirect to='/login' /> : component
 
   return (
     <React.Fragment>
-      {props.preflightComplete && props.isLoggedIn && (<GuildMenu />)}
+      {props.preflightComplete && props.isLoggedIn && <GuildMenu />}
       <Switch>
-        <Route exact path="/">{privateView(<Start />)}</Route>
-        <Route path="/register">{props.isLoggedIn ? <Redirect to='/home' /> : <Register />}</Route>
-        <Route path="/login">{props.isLoggedIn ? <Redirect to='/home' /> : <Login />}</Route>
-        <Route path="/home">{privateView(<Home />)}</Route>
-        <Route path="/new-character">{privateView(<NewCharacter />)}</Route>
-        <Route path="/view-character/:id">{privateView(<ViewCharacter />)}</Route>
+        <Route exact path='/'>{privateView(<Start />)}</Route>
+        <Route path='/register'>{props.isLoggedIn ? <Redirect to='/home' /> : <Register />}</Route>
+        <Route path='/login'>{props.isLoggedIn ? <Redirect to='/home' /> : <Login />}</Route>
+        <Route path='/home'>{privateView(<Home />)}</Route>
+        <Route path='/new-character'>{privateView(<NewCharacter />)}</Route>
+        <Route path='/view-character/:id'>{privateView(<ViewCharacter />)}</Route>
       </Switch>
 
     </React.Fragment>
@@ -56,8 +56,8 @@ const { dispatch } = props
 
 const mapStateToProps = (state: IState) => {
   return { 
-      isLoggedIn: state.isLoggedIn,
-      preflightComplete: state.preflightComplete
+    isLoggedIn: state.isLoggedIn,
+    preflightComplete: state.preflightComplete
   }
 }
 export default connect(mapStateToProps)(App)

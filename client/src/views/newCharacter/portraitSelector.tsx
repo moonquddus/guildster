@@ -38,7 +38,7 @@ const PortraitSelector = (props: PSProps) => {
   const { Button, SubHeader } = components
 
   const prevOption = () => selectedOption > 0 ? setSelectedOption(selectedOption - 1) : setSelectedOption(portraits.length - 1)
-  const nextOption = () => selectedOption < (portraits.length - 1) ? setSelectedOption(selectedOption + 1) : setSelectedOption(0)
+  const nextOption = () => selectedOption < portraits.length - 1 ? setSelectedOption(selectedOption + 1) : setSelectedOption(0)
 
   return (
     <React.Fragment>

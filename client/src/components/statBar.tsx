@@ -42,7 +42,7 @@ interface SBProps {
 }
 const StatBar = (props: SBProps) => {
   const {stat, max, label} = props
-  const statPercentage = ((stat || 0) / max) * 100
+  const statPercentage = (stat || 0) / max * 100
   return (
     <StatBarWrapper>
       {label ? <StatLabel>{label}</StatLabel> : null}

@@ -8,21 +8,21 @@ interface IPayload {
 }
 
 export const defaultAction = (payload: IPayload) => {
-  return { type: "DEFAULT_ACTION", payload }
+  return { type: 'DEFAULT_ACTION', payload }
 }
 
 export const initUser = (payload: IPayload) => {
-  return { type: "INIT_USER", payload }
+  return { type: 'INIT_USER', payload }
 }
 
 export const logout = (payload: IPayload) => {
-  return { type: "LOG_OUT", payload }
+  return { type: 'LOG_OUT', payload }
 }
 
 export const preflightFinished = (payload: IPayload) => {
-  return { type: "PREFLIGHT_FINISHED", payload}
+  return { type: 'PREFLIGHT_FINISHED', payload}
 }
 
 export const updateUser = (payload: IPayload) => {
-  return { type: "UPDATE_USER", payload}
+  return { type: 'UPDATE_USER', payload}
 }

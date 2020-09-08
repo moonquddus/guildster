@@ -19,7 +19,7 @@ const getUserOnStart = async () => {
   await axios.get('/api/users/me').then((response) => {
     data = {success: true, data: response.data}
   }).catch((error) => {
-    console.warn("User is not logged in. Redirecting to login screen.")
+    console.warn('User is not logged in. Redirecting to login screen.')
     data = {success: false, data: error.response.data}
   })
   return data
@@ -34,7 +34,7 @@ const registerAccount = async (email: string, password: string, displayName: str
   await axios.post('/api/users/register', { email, password, name: displayName, guild }).then((response) => {
     data = {success: true, data: response.data}
   }).catch((error) => {
-    console.warn("Register failed!", error.response.data)
+    console.warn('Register failed!', error.response.data)
     data = {success: false, data: error.response.data}
   })
   return data
@@ -49,7 +49,7 @@ const loginToAccount = async (email: string, password: string) => {
   await axios.post('/api/users/login', { email, password }).then((response) => {
     data = {success: true, data: response.data}
   }).catch((error) => {
-    console.warn("Login failed!", error.response.data)
+    console.warn('Login failed!', error.response.data)
     data = {success: false, data: error.response.data}
   })
   return data

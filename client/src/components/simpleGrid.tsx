@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const SimpleGrid = styled.div`
   display: grid;
@@ -14,9 +14,9 @@ export const SimpleGrid = styled.div`
 export const Left = styled.div`
   width: 90%;
   margin: 0 auto;
-`
+`;
 
 export const Right = styled.div`
   width: 90%;
   margin: 0 auto;
-`
+`;

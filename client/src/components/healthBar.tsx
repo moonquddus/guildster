@@ -37,7 +37,7 @@ interface HBProps {
 }
 const HealthBar = (props: HBProps) => {
   const {hp, max} = props
-  const healthPercentage = (hp / max) * 100
+  const healthPercentage = hp / max * 100
   return (
     <HealthContainer>
       <CurrentHealth theme={{health: healthPercentage}}></CurrentHealth>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from "react-router-dom"
+import { Redirect } from 'react-router-dom'
 import { IState } from '../../redux/reducers'
 import { connect } from 'react-redux'
 import Card from '../../components/card'
@@ -8,15 +8,15 @@ import AppHeader from '../../components/appHeader'
 type StartProps = {
   preflightComplete: boolean
 }
-const Start = (props: StartProps) => (
+const Start = (props: StartProps) => 
   <Card theme={{width: '400px'}}>
-    { props.preflightComplete ? <Redirect to="/home" /> : <></> }
+    { props.preflightComplete ? <Redirect to='/home' /> : <></> }
     <AppHeader>Connecting to server...</AppHeader>
   </Card>
-)
+
 const mapStateToProps = (state: IState) => {
   return { 
-      preflightComplete: state.preflightComplete
+    preflightComplete: state.preflightComplete
   }
 }
 export default connect(mapStateToProps)(Start)

@@ -48,15 +48,15 @@ const Register = (props: RegisterProps) => {
   return (
     <Card theme={{width: '400px'}}>
       <AppHeader>Register New Account</AppHeader>
-      <SignIn><Link to="/login">(I already have an account)</Link></SignIn>
+      <SignIn><Link to='/login'>(I already have an account)</Link></SignIn>
       <FormContainer>
         <form method='post' onSubmit={handleSubmit(onSubmit)}>
           <FloatingLabel>
             <Input type='email' name='email' placeholder='Email' ref={register({
-              required: "Required",
+              required: 'Required',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "invalid email address"
+                message: 'invalid email address'
               }
             })} />
             <Label htmlFor=''>Email:</Label>
@@ -65,7 +65,7 @@ const Register = (props: RegisterProps) => {
 
           <FloatingLabel>
             <Input type='password' name='password' placeholder='Password' ref={register({
-              required: "Required",
+              required: 'Required',
               minLength: {
                 value: 7,
                 message: 'Password needs to be at least 7 chars'
@@ -77,7 +77,7 @@ const Register = (props: RegisterProps) => {
 
           <FloatingLabel>
             <Input type='text' name='displayName' placeholder='Display Name' ref={register({
-              required: "Required"
+              required: 'Required'
             })} />
             <Label htmlFor=''>Display Name:</Label>
             <FormError>{ errors.displayName && errors.displayName.message }</FormError>
@@ -85,7 +85,7 @@ const Register = (props: RegisterProps) => {
 
           <FloatingLabel>
             <Input type='text' name='guild' placeholder='Guild' ref={register({
-              required: "Required"
+              required: 'Required'
             })} />
             <Label htmlFor=''>Guild:</Label>
             <FormError>{ errors.guild && errors.guild.message }</FormError>

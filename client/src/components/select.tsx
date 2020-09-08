@@ -46,7 +46,7 @@ const DropDownList = styled.ul`
   z-index: 10;
   `;
   
-const ListItem = styled("li")`
+const ListItem = styled('li')`
   margin: 0;
   list-style: none;
   display: block;
@@ -89,17 +89,17 @@ const Select = (props: SelectProps) => {
 
   return (
     <DropDownContainer>
-      <Label>{props.label}</Label>
+      <Label>{label}</Label>
       <DropDownHeader onClick={toggleSelect}>{ getSelectedName() }</DropDownHeader>
-      {isOpen && (
+      {isOpen && 
         <DropDownList>
-          {options.map(option => (
+          {options.map(option => 
             <ListItem className={option.value === selectedOption ? 'active' : ''} onClick={onOptionClicked(option.value)} key={option.value}>
               {option.name}
             </ListItem>
-          ))}
+          )}
         </DropDownList>
-      )}
+      }
     </DropDownContainer>
   )
 }

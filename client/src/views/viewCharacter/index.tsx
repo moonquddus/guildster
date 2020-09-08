@@ -1,4 +1,4 @@
-import React, { useEffect, Dispatch, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { ICharacter, IState } from '../../redux/reducers'
 import portraits from '../../assets/portraits'
@@ -45,8 +45,8 @@ const ViewCharacter = (props: VCProps) => {
     if (foundCharacters.length){
       setCharacter(foundCharacters[0])
     }
-  }, [characters])
-  return character ? (
+  }, [characters, id])
+  return character ? 
     <Card>
       <AppHeader>{character.name}</AppHeader>
       <SimpleGrid>
@@ -75,16 +75,16 @@ const ViewCharacter = (props: VCProps) => {
         <Link to={'/home'}><Button type='button'>Go Back</Button></Link>
       </ActionBar>
     </Card>    
-  ) : (
+    : 
     <Card>
       Loading character...
     </Card>
-  )
+  
 }
 
 const mapStateToProps = (state: IState) => {
   return { 
-      characters: state.user ? state.user.guild.characters : []
+    characters: state.user ? state.user.guild.characters : []
   }
 }
 export default connect(mapStateToProps)(ViewCharacter)

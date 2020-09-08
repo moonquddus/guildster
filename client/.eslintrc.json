@@ -1,0 +1,43 @@
+{ 
+  "extends": "react-app",
+  "settings": {
+    "import/extensions": [
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx",
+      ".png"
+    ]
+  },
+  "ignorePatterns": ["serviceWorker.ts"],
+  "rules": {
+    "getter-return": 2,
+    "no-duplicate-case": 2,
+    "no-extra-semi": 2,
+    "no-extra-parens": 1,
+    "no-unreachable": 1,
+    "curly": 1,
+    "no-useless-catch": 1,
+    "yoda": 1,
+    "no-unused-vars": 1,
+    "capitalized-comments": [1, "always"],
+    "comma-spacing": [1, {"before": false, "after": true}],
+    "eol-last": [2, "always"],
+    "indent": [1, 2],
+    "jsx-quotes": [1, "prefer-single"],
+    "key-spacing": [1, { "afterColon": true }],
+    "quotes": [1, "single"],
+    "spaced-comment": ["error", "always", {
+      "line": {
+        "markers": ["/"],
+        "exceptions": ["-", "+"]
+      },
+      "block": {
+        "markers": ["!"],
+        "exceptions": ["*"],
+        "balanced": true
+      }
+    }],
+    "no-var": 2
+  }
+}

@@ -83,7 +83,7 @@ const GuildMenu = (props: GMProps) => {
     <MenuContainer>
       <InnerMenu>
         <Left>
-          <MenuTab><span><img src={treasureChest} />{user.guild.gold}</span></MenuTab>
+          <MenuTab><span><img src={treasureChest} alt='Treasure Chest Icon' />{user.guild.gold}</span></MenuTab>
         </Left>
         <Right>
           <MenuTab><Link to='/home'><i className='icofont-home' /></Link></MenuTab>
@@ -97,7 +97,7 @@ const GuildMenu = (props: GMProps) => {
 
 const mapStateToProps = (state: IState) => {
   return { 
-      user: state.user
+    user: state.user
   }
 }
 export default connect(mapStateToProps)(GuildMenu)

@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { useForm } from 'react-hook-form'
 import apiHandler from '../../lib/apiHandler'
 import { IState } from '../../redux/reducers'
 import { connect } from 'react-redux'
@@ -29,8 +28,8 @@ const CreateAccount = styled.p`
 const Login = (props: LoginProps) => {
   const { dispatch } = props
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -49,7 +48,7 @@ const Login = (props: LoginProps) => {
   return (
     <Card theme={{width: '400px'}}>
       <AppHeader>Sign In To Your Account</AppHeader>
-      <CreateAccount><Link to="/register">(I don't have an account)</Link></CreateAccount>
+      <CreateAccount><Link to='/register'>(I don't have an account)</Link></CreateAccount>
       <FormContainer>
         <form method='post' onSubmit={handleSubmit} autoComplete='off'>
           <FloatingLabel>

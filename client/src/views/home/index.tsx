@@ -1,9 +1,8 @@
-import React, { useState, useEffect, JSXElementConstructor } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IState, IUser, IGuild, ICharacter } from '../../redux/reducers'
 import { connect } from 'react-redux'
-import apiHandler from '../../lib/apiHandler'
 import { Dispatch } from 'redux'
-import { logout, Action } from '../../redux/actions'
+import { Action } from '../../redux/actions'
 import components from '../../components'
 import CharacterCard from '../viewCharacter/card'
 import styled from 'styled-components'
@@ -22,8 +21,8 @@ type HomeProps = {
   user?: IUser
 }
 const Home = (props: HomeProps) => {
-  const { dispatch, user } = props
-  const { Card, AppHeader, SubHeader } = components
+  const { user } = props
+  const { Card, AppHeader } = components
   const [guild, setGuild] = useState<IGuild>({})
 
   useEffect(() => {
@@ -55,7 +54,7 @@ const Home = (props: HomeProps) => {
 }
 const mapStateToProps = (state: IState) => {
   return { 
-      user: state.user
+    user: state.user
   }
 }
 export default connect(mapStateToProps)(Home)
