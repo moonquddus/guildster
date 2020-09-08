@@ -2,8 +2,8 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
 import validator from 'validator'
-import { IGuild, Guild } from './guildModel'
 import { Character } from './characterModel'
+import { Guild, IGuild } from './guildModel'
 
 export interface IUser extends mongoose.Document {
   name: string
@@ -13,7 +13,7 @@ export interface IUser extends mongoose.Document {
   tokens: string[]
   create_date: Date
   generateAuthToken: () => string
-  getUserDetails: () => Object
+  getUserDetails: () => {}
 }
 
 export interface IUserModel extends mongoose.Model<IUser> {
@@ -88,7 +88,7 @@ userSchema.statics.findByCredentials = async (email: string, password: string) =
   const user = await User.findOne({ email }).populate({
     path: 'guild',
     model: Guild,
-    populate: { 
+    populate: {
       path: 'characters',
       model: Character
     }

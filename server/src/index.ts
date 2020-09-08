@@ -1,11 +1,11 @@
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import csrf from 'csurf'
 import express, { Request, Response } from 'express'
+import { request } from 'http'
 import mongoose from 'mongoose'
 import router from './api-routes'
-import csrf from 'csurf'
-import { request } from 'http'
 
 const app = express()
 const port = process.env.PORT

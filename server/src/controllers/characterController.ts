@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
 import { IRequest, IToken } from '../middleware/auth'
-import { IUser, User } from '../models/userModel'
-import { ICharacter, Character } from '../models/characterModel'
+import { Character, ICharacter } from '../models/characterModel'
 import { Guild } from '../models/guildModel'
+import { IUser, User } from '../models/userModel'
 
 const rollStat = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min)
 
@@ -14,7 +14,7 @@ const addCharacter = (req: IRequest, res: Response) => {
   character.name = req.body.name
   character.portrait = req.body.portrait
   character.occupation = req.body.occupation
-  
+
   // TODO: Make this a bit more dynamic depending on character occupation
   character.health = rollStat(10, 20)
   character.hp = character.health

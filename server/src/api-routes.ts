@@ -1,8 +1,8 @@
 // Filename: api-routes.js
 // Initialize express router
 import { Router } from 'express'
-import userController from './controllers/userController'
 import characterController from './controllers/characterController'
+import userController from './controllers/userController'
 import auth, { IRequest } from './middleware/auth'
 
 const router = Router()
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/csrf-token', (req, res) => {
-    res.json({ csrfToken: req.csrfToken() });
+    res.json({ csrfToken: req.csrfToken() })
 })
 
 router.get('/users/me', auth, async (req: IRequest, res) => {

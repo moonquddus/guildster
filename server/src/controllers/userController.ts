@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { IRequest, IToken } from '../middleware/auth'
-import { IUser, User } from '../models/userModel'
 import { Guild } from '../models/guildModel'
+import { IUser, User } from '../models/userModel'
 
 const indexUser = (req: Request, res: Response) => {
   User.getUser((err, users) => {
@@ -90,14 +90,14 @@ const newUser = async (req: Request, res: Response) => {
         _id: user._id,
         name: user.name,
         email: user.email,
-        guild: guild
+        guild
       })
     })
   }
   catch(error){
     res.status(400).json({
-      error: "INVALID_DETAILS",
-      message: "Invalid user details. Please try again."
+      error: 'INVALID_DETAILS',
+      message: 'Invalid user details. Please try again.'
     })
   }
 }

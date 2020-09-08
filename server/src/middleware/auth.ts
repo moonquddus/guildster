@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
-import { IUser, User } from '../models/userModel'
 import { Character } from '../models/characterModel'
 import { Guild } from '../models/guildModel'
+import { IUser, User } from '../models/userModel'
 
 export interface IRequest extends Request {
   user: IUser
@@ -27,7 +27,7 @@ const auth = async (req: IRequest, res: Response, next: NextFunction) => {
       const user: IUser = await User.findOne({ _id: (data as IToken)._id, 'tokens.token': token }).populate({
         path: 'guild',
         model: Guild,
-        populate: { 
+        populate: {
           path: 'characters',
           model: Character
         }
