@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { IUser, IState } from '../../redux/reducers'
+import { IUser, IState } from '../../lib/types'
 import { connect } from 'react-redux'
 import apiHandler from '../../lib/apiHandler'
 import { logout, Action } from '../../redux/actions'

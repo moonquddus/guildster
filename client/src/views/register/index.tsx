@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import apiHandler from '../../lib/apiHandler'
-import { IState } from '../../redux/reducers'
+import { IState } from '../../lib/types'
 import { connect } from 'react-redux'
 import { Action, initUser } from '../../redux/actions'
 import { Dispatch } from 'redux'

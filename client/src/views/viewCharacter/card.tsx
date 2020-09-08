@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ICharacter } from '../../redux/reducers'
+import { ICharacter } from '../../lib/types'
 import portraits from '../../assets/portraits'
 import { Link } from 'react-router-dom'
 import Button from '../../components/button'

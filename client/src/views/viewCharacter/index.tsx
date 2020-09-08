@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { ICharacter, IState } from '../../redux/reducers'
+import { ICharacter, IState } from '../../lib/types'
 import portraits from '../../assets/portraits'
 import { Link, useParams } from 'react-router-dom'
 import components from '../../components'

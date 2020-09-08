@@ -1,6 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { IState } from '../../redux/reducers'
+import { IState } from '../../lib/types'
 import { connect } from 'react-redux'
 import Card from '../../components/card'
 import AppHeader from '../../components/appHeader'

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { IState, IUser, IGuild, ICharacter } from '../../redux/reducers'
+import { IState, IUser, IGuild, ICharacter } from '../../lib/types'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { Action } from '../../redux/actions'

@@ -9,7 +9,7 @@ import Home from './views/home'
 import NewCharacter from './views/newCharacter'
 import ViewCharacter from './views/viewCharacter'
 import GuildMenu from './views/guildMenu'
-import { IState } from './redux/reducers'
+import { IState } from './lib/types'
 import { initUser, logout, preflightFinished, Action } from './redux/actions'
 
 type AppProps = {
