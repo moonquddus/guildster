@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionBar renders correctly 1`] = `
+<div
+  className="sc-bdnylx bYwksk"
+>
+  Testing
+</div>
+`;
+
+exports[`AppHeader renders correctly 1`] = `
+<h1
+  className="sc-dlnjPT bqwPji"
+>
+  My Header
+</h1>
+`;
+
+exports[`Button renders correctly 1`] = `
+<button
+  className="sc-hKFyIo idwWRH"
+  type="button"
+>
+  My Button
+</button>
+`;
+
+exports[`Card renders correctly 1`] = `
+<main
+  className="sc-eCApGN fPCvFY"
+>
+  This is a card.
+</main>
+`;
+
+exports[`HealthBar renders at 0% 1`] = `
+<span
+  className="sc-ksluoS kAtFPB"
+>
+  <span
+    className="sc-hBMVcZ bgyveJ"
+  />
+</span>
+`;
+
+exports[`HealthBar renders at 50% 1`] = `
+<span
+  className="sc-ksluoS kAtFPB"
+>
+  <span
+    className="sc-hBMVcZ ineYPS"
+  />
+</span>
+`;
+
+exports[`HealthBar renders at 100% 1`] = `
+<span
+  className="sc-ksluoS kAtFPB"
+>
+  <span
+    className="sc-hBMVcZ fKfxhH"
+  />
+</span>
+`;
+
+exports[`Input w/ FloatingLabel renders correctly 1`] = `
+<div
+  className="sc-gKAblj dIppkU"
+>
+  <div
+    className="sc-jSFkmK cWyYbt"
+  >
+    <input
+      className="sc-iCoHVE krsFLN"
+      name="test"
+      placeholder="Test Input"
+      type="text"
+    />
+    <label
+      className="sc-fujyUd dgolgJ"
+      htmlFor="test"
+    >
+      Test Input:
+    </label>
+  </div>
+</div>
+`;
+
+exports[`Select renders correctly 1`] = `
+<div
+  className="sc-gKAblj dIppkU"
+>
+  <div
+    className="sc-iqAbSa tIQUW"
+  >
+    <label
+      className="sc-fujyUd dgolgJ"
+    >
+      Class
+    </label>
+    <div
+      className="sc-crzoUp ctHhyA"
+      onClick={[Function]}
+    >
+      Testing 2
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SimpleGrid renders correctly 1`] = `
+<div
+  className="sc-pNWxx cmKcTU"
+>
+  <div
+    className="sc-jrsJCI ejYQCf"
+  >
+    The left-hand side of the grid
+  </div>
+  <div
+    className="sc-kEqYlL eRAHru"
+  >
+    The right-hand side of the grid
+  </div>
+</div>
+`;
+
+exports[`StatBar renders at 0% 1`] = `
+<div
+  className="sc-fnVYJo cmeurz"
+>
+  <label
+    className="sc-iemXMA fmUzhZ"
+  >
+    LOW STAT
+  </label>
+  <span
+    className="sc-fFSRdu daiJqc"
+  >
+    <span
+      className="sc-bkbjAj kCyhhC"
+    />
+  </span>
+  <label
+    className="sc-iemXMA fmUzhZ"
+  >
+    0
+  </label>
+</div>
+`;
+
+exports[`StatBar renders at 50% 1`] = `
+<div
+  className="sc-fnVYJo cmeurz"
+>
+  <label
+    className="sc-iemXMA fmUzhZ"
+  >
+    MID STAT
+  </label>
+  <span
+    className="sc-fFSRdu daiJqc"
+  >
+    <span
+      className="sc-bkbjAj crdRFW"
+    />
+  </span>
+  <label
+    className="sc-iemXMA fmUzhZ"
+  >
+    50
+  </label>
+</div>
+`;
+
+exports[`StatBar renders at 100% 1`] = `
+<div
+  className="sc-fnVYJo cmeurz"
+>
+  <label
+    className="sc-iemXMA fmUzhZ"
+  >
+    HIGH STAT
+  </label>
+  <span
+    className="sc-fFSRdu daiJqc"
+  >
+    <span
+      className="sc-bkbjAj kCyhhC"
+    />
+  </span>
+  <label
+    className="sc-iemXMA fmUzhZ"
+  >
+    100
+  </label>
+</div>
+`;
+
+exports[`SubHeader renders correctly 1`] = `
+<h2
+  className="sc-gtssRu eQOHpZ"
+>
+  My Subheader
+</h2>
+`;
