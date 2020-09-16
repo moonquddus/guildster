@@ -4,12 +4,17 @@ export interface MyAPIResponse {
   success: boolean
   data: Object
 }
-
+/**
+ * This CSRF token is used for preventing cross-site/one-click attacks
+ */
 const loadCsrfToken = async () => {
   const { data } = await axios.get('/api/csrf-token');
   axios.defaults.headers.post['X-CSRF-Token'] = data.csrfToken;
 }
 
+/**
+ * When the App loads, we run a request to the API server to get your user details (if you have a previously-used session token)
+ */
 const getUserOnStart = async () => {
   let data: MyAPIResponse = {
     success: false,
@@ -25,6 +30,13 @@ const getUserOnStart = async () => {
   return data
 }
 
+/**
+ * Sign up for a new account
+ * @param email
+ * @param password 
+ * @param displayName 
+ * @param guild 
+ */
 const registerAccount = async (email: string, password: string, displayName: string, guild: string) => {
   let data: MyAPIResponse = {
     success: false,
@@ -40,6 +52,11 @@ const registerAccount = async (email: string, password: string, displayName: str
   return data
 }
 
+/**
+ * Sign-in to your account
+ * @param email 
+ * @param password 
+ */
 const loginToAccount = async (email: string, password: string) => {
   let data: MyAPIResponse = {
     success: false,
@@ -55,6 +72,9 @@ const loginToAccount = async (email: string, password: string) => {
   return data
 }
 
+/**
+ * Delete your account's session & log out
+ */
 const logOutOfAccount = async () => {
   let data: MyAPIResponse = {
     success: false,
@@ -69,6 +89,12 @@ const logOutOfAccount = async () => {
   return data
 }
 
+/**
+ * Add a new party member for your guild
+ * @param name 
+ * @param occupation 
+ * @param portrait 
+ */
 const addNewCharacter = async (name: string, occupation: string, portrait: number) => {
   let data: MyAPIResponse = {
     success: false,

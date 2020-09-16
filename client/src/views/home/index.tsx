@@ -1,3 +1,5 @@
+// TODO: Rename this to Dashboard or something a bit clearer
+
 import React, { useState, useEffect } from 'react'
 import { IState, IUser, IGuild, ICharacter } from '../../lib/types'
 import { connect } from 'react-redux'
